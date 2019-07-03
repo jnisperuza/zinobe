@@ -7,6 +7,7 @@ import { SimulatorService } from './simulator.service';
 import { UserService } from '../user/user.service';
 import { RequestService } from '../request/request.service';
 import { increment, decrement, resume } from '../app.actions';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-simulator',
@@ -16,6 +17,8 @@ import { increment, decrement, resume } from '../app.actions';
 })
 export class SimulatorComponent implements OnInit {
 
+  bankAmount: Observable<number>;
+
   Toast = swal.mixin({
     toast: true,
     position: 'bottom-end',
@@ -24,6 +27,8 @@ export class SimulatorComponent implements OnInit {
   });
 
   model = {
+    bankAmount: 0,
+    enabledRequest: true,
     registered: false,
     name: null,
     dni: null,
@@ -38,17 +43,30 @@ export class SimulatorComponent implements OnInit {
     private requestService: RequestService,
     private router: Router,
     private store: Store<{ bankAmount: number }>
-  ) { }
+  ) {
+    this.bankAmount = store.pipe(select('bankAmount'));
+  }
 
   ngOnInit() {
+    this.bankAmount.subscribe(value => {
+      this.model.bankAmount = value;
+      if (value < 10000 || this.model.amount > value) {
+        this.model.enabledRequest = false;
+      }
+    });
   }
 
   onBlurMethod() {
     if (this.model.amount < 10000) {
       this.model.amount = 10000;
     }
-    else if (this.model.amount > 100000) {
-      this.model.amount = 100000;
+    else if (this.model.amount > 1000000) {
+      this.model.amount = 1000000;
+    }
+    if (this.model.bankAmount < 10000 || this.model.amount > this.model.bankAmount) {
+      this.model.enabledRequest = false;
+    } else {
+      this.model.enabledRequest = true;
     }
   }
 
@@ -113,7 +131,7 @@ export class SimulatorComponent implements OnInit {
               title: 'Usuario registrado',
               type: 'error',
               html: 'Este usuario ya existe, por favor active la casilla <br/> <b><em>"Ya he prestado anteriormente"</em></b>'
-            })
+            });
           }
         };
 
@@ -146,13 +164,20 @@ export class SimulatorComponent implements OnInit {
         userLoan['paymentDate'] = this.model.paymentDate;
         this.router.navigate(['/transaction']);
         this.store.dispatch(resume(userLoan));
-        console.log('Mostrar siguiente ventana', response.data);
       }
       else if (response.status === 202) {
-        console.log('Usted tiene un préstamo pendiente por pagar');
+        swal.fire({
+          title: 'Solicitud de crédito',
+          type: 'warning',
+          html: 'Usted tiene un préstamo pendiente por pagar'
+        });
       }
       else if (response.status === 203) {
-        console.log('Usted tiene los préstamos negados, por favor cominíquese con nosotros');
+        swal.fire({
+          title: 'Solicitud de crédito',
+          type: 'warning',
+          html: 'Usted tiene los préstamos negados, por favor cominíquese con nosotros'
+        });
       }
     };
 

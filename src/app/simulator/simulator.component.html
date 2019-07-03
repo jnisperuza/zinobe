@@ -21,7 +21,7 @@
       </mat-form-field>
       <div class="row inline">
         <mat-form-field>
-          <input matInput placeholder="Cantidad" type="number" min="10000" max="100000" (blur)="onBlurMethod()" [(ngModel)]="model.amount" required>
+          <input matInput placeholder="Cantidad" type="number" min="10000" max="1000000" (blur)="onBlurMethod()" [(ngModel)]="model.amount" required>
           <span matPrefix>$&nbsp;</span>
         </mat-form-field>
         <mat-form-field>
@@ -31,7 +31,7 @@
         </mat-form-field>
       </div>
       <div class="row inline">
-        <button class="request" mat-flat-button color="warn" (click)="request()">Solicitar Crédito</button>
+        <button class="request" mat-flat-button color="warn" [disabled]="!model.enabledRequest" (click)="request()">Solicitar Crédito</button>
       </div>
     </aside>
   </mat-card>

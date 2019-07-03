@@ -11,7 +11,6 @@ export const counterReducer = createReducer(initialState,
 
 export const resumeReducer = createReducer({},
   on(resume, (state, object) => {
-    console.log(object);
     return state = object.userLoan
   })
 );
