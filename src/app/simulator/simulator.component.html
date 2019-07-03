@@ -1,0 +1,38 @@
+<section class="simulator-container">
+  <mat-card>
+    <aside>
+      <h1>Solicitud de crédito</h1>
+      <div class="row inline">
+        <p>Todos los campos marcados (*) son requeridos</p>
+      </div>
+      <div class="row inline">
+        <mat-checkbox [(ngModel)]="model.registered">Ya he prestado anteriormente</mat-checkbox>
+      </div>
+      <div class="row inline">
+        <mat-form-field *ngIf="!model.registered">
+          <input matInput placeholder="Nombre" type="text" [(ngModel)]="model.name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Cédula" type="number" [(ngModel)]="model.dni" required>
+        </mat-form-field>
+      </div>
+      <mat-form-field *ngIf="!model.registered">
+        <input matInput placeholder="Correo electrónico" type="email" [(ngModel)]="model.email" required>
+      </mat-form-field>
+      <div class="row inline">
+        <mat-form-field>
+          <input matInput placeholder="Cantidad" type="number" min="10000" max="100000" (blur)="onBlurMethod()" [(ngModel)]="model.amount" required>
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Fecha de pago" [(ngModel)]="model.paymentDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="row inline">
+        <button class="request" mat-flat-button color="warn" (click)="request()">Solicitar Crédito</button>
+      </div>
+    </aside>
+  </mat-card>
+</section>

@@ -1,0 +1,54 @@
+section.bank-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    border-radius: 2px;
+
+    div.wrapper {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 4px;
+            height: 100%;
+            background-color: #ff4081;
+        }
+
+        div.amount {
+            display: flex;
+
+            label {
+                font-family: 'Lato', sans-serif;
+                font-size: 22px;
+                font-weight: bold;
+                color: #231f20;
+            }
+
+            span {
+                font-family: 'Lato', sans-serif;
+                font-size: 22px;
+                font-weight: bold;
+                color: #231f20;
+            }
+        }
+
+        span {
+            font-family: 'Lato', sans-serif;
+            color: #6a6b6b;
+        }
+    }
+}

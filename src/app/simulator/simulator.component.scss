@@ -1,0 +1,97 @@
+@import '../mixins.scss';
+
+section.simulator-container {
+    margin-top: 50px;
+
+    @media #{$smartphones}, #{$smartphones_h} {
+        margin-top: 90px;
+    }
+
+    mat-card {
+        position: relative;
+        max-width: 600px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        display: flex;
+
+        @media #{$smartphones}, #{$smartphones_h} {
+            width: calc(100% - 10px);
+            box-sizing: border-box;
+            margin: 5px;
+        }
+
+        aside {
+            padding: 10px 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+
+            @media #{$smartphones}, #{$smartphones_h} {
+                padding: 10px;
+            }
+
+            div.row {
+                &.inline {
+                    width: 100%;
+                    display: flex;
+
+                    @media #{$smartphones}, #{$smartphones_h} {
+                        flex-direction: column;
+                    }
+
+                    mat-form-field {
+                        width: calc(100% - 10px);
+
+                        &:nth-child(1) {
+                            margin-right: 5px;
+                        }
+
+                        &:nth-child(2) {
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+
+            // form elements
+            h1 {
+                position: relative;
+                font-family: 'Lato', sans-serif;
+                margin: 0 0 5px 0;
+                font-size: 22px;
+                color: #231f20;
+
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    left: -10px;
+                    top: 22px;
+                    bottom: 0;
+                    margin: auto;
+                    width: 3px;
+                    height: 40px;
+                    background-color: #65c260;
+                }
+            }
+
+            p {
+                font-family: 'Lato', sans-serif;
+                font-size: 11px;
+                color: #6a6b6b;
+                margin: 0 0 15px;
+            }
+
+            mat-checkbox {
+                color: rgba(0, 0, 0, 0.54);
+            }
+
+            button.request {
+                width: 100%;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

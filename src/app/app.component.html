@@ -1,0 +1,38 @@
+<section class="app-container">
+  <header>
+    <app-bank></app-bank>
+    <nav>
+      <div class="menu">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['/simulator']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-icon>description</mat-icon>
+            <span>Solicitud</span>
+          </button>
+          <button mat-menu-item [routerLink]="['/user']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-icon>face</mat-icon>
+            <span>Usuarios</span>
+          </button>
+          <button mat-menu-item [routerLink]="['/request']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-icon>monetization_on</mat-icon>
+            <span>Créditos</span>
+          </button>
+        </mat-menu>
+      </div>
+      <ul>
+        <li>
+            <button mat-flat-button [routerLink]="['/simulator']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Solicitud</button>
+        </li>
+        <li>
+            <button mat-flat-button [routerLink]="['/user']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Usuarios</button>
+        </li>
+        <li>
+            <button mat-flat-button [routerLink]="['/request']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Créditos</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <router-outlet></router-outlet>
+</section>

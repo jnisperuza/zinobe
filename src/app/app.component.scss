@@ -1,0 +1,87 @@
+@import './mixins.scss';
+
+section.app-container {
+    display: block;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fafafa;
+
+    @media #{$smartphones}, #{$smartphones_h} {
+        height: calc(100vh - 90px);
+    }
+
+    header {
+        position: relative;
+        width: 100%;
+        height: 80px;
+        background-color: #4588ff;
+        display: flex;
+        align-items: center;
+
+        @media #{$smartphones}, #{$smartphones_h} {
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        app-bank {
+            width: 200px;
+            height: 60px;
+            margin-left: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            box-sizing: border-box;
+            padding: 10px 20px;
+            width: calc(100% - 200px);
+            height: 60px;
+
+            div.menu {
+                display: none;
+
+                @media #{$smartphones}, #{$smartphones_h} {
+                    display: block;
+                }
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                display: flex;
+                align-items: center;
+
+                @media #{$smartphones}, #{$smartphones_h} {
+                    display: none;
+                }
+
+                li {
+                    display: block;
+                    position: relative;
+                    margin-right: 10px;
+
+                    &:nth-last-child(1) {
+                        margin-right: 0;
+                    }
+
+                    button {
+                        cursor: pointer;
+                        line-height: 28px;
+                        border: 1px solid #ffffff;
+                        padding: 0 10px;
+                        border-radius: 2px;
+                        background-color: transparent;
+                        // text properties
+                        font-family: 'Lato', sans-serif;
+                        font-size: 12px;
+                        color: #ffffff;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+<section class="transaction-container">
+  <mat-card>
+    <aside>
+      <h1>Resultado de la transacción</h1>
+      <div class="row inline">
+        <div class="approved" *ngIf="model.status === true">
+          <img class="logo" src="app/images/checked.svg">
+          <span>Su solicitud de crédito ha sido aprobada</span>
+        </div>
+        <div class="negated" *ngIf="model.status === false">
+          <img class="logo" src="app/images/warning.svg">
+          <span>Su solicitud de crédito ha sido negada</span>
+        </div>
+      </div>
+      <div class="information">
+        <div class="row inline">
+          <div class="summary-field">
+            <label>Nombre</label>
+            <span>{{ model.name }}</span>
+          </div>
+          <div class="summary-field">
+            <label>Cédula</label>
+            <span>{{ model.dni }}</span>
+          </div>
+        </div>
+        <div class="row inline">
+          <div class="summary-field">
+            <label>Correo electrónico</label>
+            <span>{{ model.email }}</span>
+          </div>
+        </div>
+        <div class="row inline">
+          <div class="summary-field">
+            <label>Valor</label>
+            <span><span matPrefix *ngIf="model.amount">$&nbsp;</span>{{ model.amount | number:0 }}</span>
+          </div>
+          <div class="summary-field">
+            <label>Facha de pago</label>
+            <span>{{ model.paymentDate }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row inline">
+        <p *ngIf="model.status === true">* En las próximas horas se estará realizando la transferencia del dinero a la cuenta bancaria configurada.</p>
+      </div>
+
+      <div class="row inline align-content-right">
+        <button class="return" mat-flat-button color="primary" (click)="back()">Aceptar</button>
+      </div>
+
+    </aside>
+
+  </mat-card>
+</section>
